@@ -1,0 +1,106 @@
+2026-02-10 23:22:49,032 - src.pipeline - INFO - ================================================================================
+2026-02-10 23:22:49,032 - src.pipeline - INFO - ANALYTICS PIPELINE STARTED
+2026-02-10 23:22:49,032 - src.pipeline - INFO - ================================================================================
+2026-02-10 23:22:49,032 - src.pipeline - INFO - 
+2026-02-10 23:22:49,032 - src.pipeline - INFO - STAGE 1/5: Data Ingestion
+2026-02-10 23:22:49,033 - src.pipeline - INFO - --------------------------------------------------------------------------------
+2026-02-10 23:22:49,034 - src.ingestion - INFO - Loading data from data\raw\transactions.csv
+2026-02-10 23:22:49,068 - src.ingestion - INFO - Loaded 10000 records from transactions.csv
+2026-02-10 23:22:49,069 - src.pipeline - INFO - Successfully loaded 10000 raw records
+2026-02-10 23:22:49,069 - src.pipeline - INFO - Columns: ['transaction_id', 'timestamp', 'customer_id', 'product_id', 'product_category', 'quantity', 'unit_price', 'region', 'payment_method', 'discount_applied', 'total_amount']
+2026-02-10 23:22:49,069 - src.pipeline - INFO - 
+2026-02-10 23:22:49,069 - src.pipeline - INFO - STAGE 2/5: Data Transformation
+2026-02-10 23:22:49,069 - src.pipeline - INFO - --------------------------------------------------------------------------------
+2026-02-10 23:22:49,069 - src.transformation - INFO - Starting data transformation
+2026-02-10 23:22:49,070 - src.transformation - INFO - Handling missing values
+2026-02-10 23:22:49,073 - src.transformation - INFO - Fixing data types
+2026-02-10 23:22:49,080 - src.transformation - INFO - Cleaning invalid values
+2026-02-10 23:22:49,084 - src.transformation - INFO - Removed 100 rows with invalid values
+2026-02-10 23:22:49,085 - src.transformation - INFO - Adding derived columns
+2026-02-10 23:22:49,094 - src.transformation - INFO - Added 25 total columns
+2026-02-10 23:22:49,094 - src.transformation - INFO - Standardizing text fields
+2026-02-10 23:22:49,102 - src.transformation - INFO - Transformation complete: 9900 records
+2026-02-10 23:22:49,106 - src.pipeline - INFO - Transformation complete: 9900 clean records
+2026-02-10 23:22:49,106 - src.pipeline - INFO - Final columns: 25
+2026-02-10 23:22:49,107 - src.pipeline - INFO - 
+2026-02-10 23:22:49,107 - src.pipeline - INFO - STAGE 3/5: Data Validation
+2026-02-10 23:22:49,107 - src.pipeline - INFO - --------------------------------------------------------------------------------
+2026-02-10 23:22:49,107 - src.validation - INFO - Starting data validation
+2026-02-10 23:22:49,108 - src.validation - INFO - Validation check 'completeness' passed
+2026-02-10 23:22:49,109 - src.validation - INFO - Validation check 'uniqueness' passed
+2026-02-10 23:22:49,110 - src.validation - INFO - Validation check 'consistency' passed
+2026-02-10 23:22:49,110 - src.validation - INFO - Validation check 'accuracy' passed
+2026-02-10 23:22:49,111 - src.validation - INFO - Validation complete: PASSED
+2026-02-10 23:22:49,111 - src.pipeline - INFO - All validation checks PASSED
+2026-02-10 23:22:49,131 - src.pipeline - INFO - Data quality metrics:
+2026-02-10 23:22:49,131 - src.pipeline - INFO -   - Memory usage: 5.11 MB
+2026-02-10 23:22:49,131 - src.pipeline - INFO -   - Columns: 26
+2026-02-10 23:22:49,132 - src.pipeline - INFO - 
+2026-02-10 23:22:49,132 - src.pipeline - INFO - STAGE 4/5: Data Aggregation
+2026-02-10 23:22:49,132 - src.pipeline - INFO - --------------------------------------------------------------------------------
+2026-02-10 23:22:49,132 - src.aggregation - INFO - Starting data aggregation
+2026-02-10 23:22:49,132 - src.aggregation - INFO - Creating daily aggregation
+2026-02-10 23:22:49,138 - src.aggregation - INFO - Daily aggregation: 417 days
+2026-02-10 23:22:49,138 - src.aggregation - INFO - Creating product aggregation
+2026-02-10 23:22:49,142 - src.aggregation - INFO - Product aggregation: 196 products
+2026-02-10 23:22:49,142 - src.aggregation - INFO - Creating customer aggregation
+2026-02-10 23:22:49,149 - src.aggregation - INFO - Customer aggregation: 999 customers
+2026-02-10 23:22:49,149 - src.aggregation - INFO - Creating regional aggregation
+2026-02-10 23:22:49,156 - src.aggregation - INFO - Regional aggregation: 4 regions
+2026-02-10 23:22:49,156 - src.aggregation - INFO - Creating hourly aggregation
+2026-02-10 23:22:49,159 - src.aggregation - INFO - Hourly aggregation complete
+2026-02-10 23:22:49,159 - src.aggregation - INFO - Created 5 aggregation views
+2026-02-10 23:22:49,159 - src.pipeline - INFO - Created 5 aggregation views:
+2026-02-10 23:22:49,159 - src.pipeline - INFO -   - daily_summary: 417 records
+2026-02-10 23:22:49,160 - src.pipeline - INFO -   - product_summary: 196 records
+2026-02-10 23:22:49,160 - src.pipeline - INFO -   - customer_summary: 999 records
+2026-02-10 23:22:49,160 - src.pipeline - INFO -   - regional_summary: 4 records
+2026-02-10 23:22:49,160 - src.pipeline - INFO -   - hourly_patterns: 24 records
+2026-02-10 23:22:49,161 - src.pipeline - INFO - 
+2026-02-10 23:22:49,161 - src.pipeline - INFO - STAGE 5/5: Data Output
+2026-02-10 23:22:49,161 - src.pipeline - INFO - --------------------------------------------------------------------------------
+2026-02-10 23:22:49,162 - src.output - INFO - Saving processed data to data\processed\processed_transactions.csv
+2026-02-10 23:22:49,241 - src.output - INFO - Saved 9900 records
+2026-02-10 23:22:49,241 - src.pipeline - INFO - Processed data saved: data\processed\processed_transactions.csv
+2026-02-10 23:22:49,242 - src.output - INFO - Saving daily_summary aggregation
+2026-02-10 23:22:49,244 - src.output - INFO - Saved 417 records to daily_summary_20260210_232249.csv
+2026-02-10 23:22:49,245 - src.output - INFO - Saving product_summary aggregation
+2026-02-10 23:22:49,246 - src.output - INFO - Saved 196 records to product_summary_20260210_232249.csv
+2026-02-10 23:22:49,247 - src.output - INFO - Saving customer_summary aggregation
+2026-02-10 23:22:49,252 - src.output - INFO - Saved 999 records to customer_summary_20260210_232249.csv
+2026-02-10 23:22:49,252 - src.output - INFO - Saving regional_summary aggregation
+2026-02-10 23:22:49,254 - src.output - INFO - Saved 4 records to regional_summary_20260210_232249.csv
+2026-02-10 23:22:49,254 - src.output - INFO - Saving hourly_patterns aggregation
+2026-02-10 23:22:49,255 - src.output - INFO - Saved 24 records to hourly_patterns_20260210_232249.csv
+2026-02-10 23:22:49,256 - src.pipeline - INFO - Saved 5 aggregation files
+2026-02-10 23:22:49,256 - src.output - INFO - Saving validation report to data\processed\validation_report_20260210_232249.json
+2026-02-10 23:22:49,256 - src.output - ERROR - Error saving validation report: Object of type bool is not JSON serializable
+2026-02-10 23:22:49,257 - src.pipeline - ERROR - ================================================================================
+2026-02-10 23:22:49,257 - src.pipeline - ERROR - PIPELINE FAILED
+2026-02-10 23:22:49,257 - src.pipeline - ERROR - ================================================================================
+2026-02-10 23:22:49,257 - src.pipeline - ERROR - Error: Object of type bool is not JSON serializable
+2026-02-10 23:22:49,257 - src.pipeline - ERROR - Full traceback:
+Traceback (most recent call last):
+  File "C:\Users\amitk\Downloads\analytics-pipeline-complete\src\pipeline.py", line 140, in run_pipeline
+    report_file = output.save_validation_report(validation_report)
+  File "C:\Users\amitk\Downloads\analytics-pipeline-complete\src\output.py", line 104, in save_validation_report
+    json.dump(report_copy, f, indent=2)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\amitk\AppData\Local\Programs\Python\Python313\Lib\json\__init__.py", line 179, in dump
+    for chunk in iterable:
+                 ^^^^^^^^
+  File "C:\Users\amitk\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "C:\Users\amitk\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Users\amitk\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Users\amitk\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Users\amitk\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 439, in _iterencode
+    o = _default(o)
+  File "C:\Users\amitk\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type bool is not JSON serializable
+2026-02-10 23:22:49,260 - src.pipeline - ERROR - ================================================================================
