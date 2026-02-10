@@ -1,0 +1,107 @@
+2026-02-10 23:24:57,427 - src.pipeline - INFO - ================================================================================
+2026-02-10 23:24:57,428 - src.pipeline - INFO - ANALYTICS PIPELINE STARTED
+2026-02-10 23:24:57,428 - src.pipeline - INFO - ================================================================================
+2026-02-10 23:24:57,429 - src.pipeline - INFO - 
+2026-02-10 23:24:57,429 - src.pipeline - INFO - STAGE 1/5: Data Ingestion
+2026-02-10 23:24:57,429 - src.pipeline - INFO - --------------------------------------------------------------------------------
+2026-02-10 23:24:57,430 - src.ingestion - INFO - Loading data from data\raw\transactions.csv
+2026-02-10 23:24:57,449 - src.ingestion - INFO - Loaded 10000 records from transactions.csv
+2026-02-10 23:24:57,450 - src.pipeline - INFO - Successfully loaded 10000 raw records
+2026-02-10 23:24:57,450 - src.pipeline - INFO - Columns: ['transaction_id', 'timestamp', 'customer_id', 'product_id', 'product_category', 'quantity', 'unit_price', 'region', 'payment_method', 'discount_applied', 'total_amount']
+2026-02-10 23:24:57,450 - src.pipeline - INFO - 
+2026-02-10 23:24:57,450 - src.pipeline - INFO - STAGE 2/5: Data Transformation
+2026-02-10 23:24:57,451 - src.pipeline - INFO - --------------------------------------------------------------------------------
+2026-02-10 23:24:57,451 - src.transformation - INFO - Starting data transformation
+2026-02-10 23:24:57,452 - src.transformation - INFO - Handling missing values
+2026-02-10 23:24:57,455 - src.transformation - INFO - Fixing data types
+2026-02-10 23:24:57,460 - src.transformation - INFO - Cleaning invalid values
+2026-02-10 23:24:57,466 - src.transformation - INFO - Removed 100 rows with invalid values
+2026-02-10 23:24:57,466 - src.transformation - INFO - Adding derived columns
+2026-02-10 23:24:57,475 - src.transformation - INFO - Added 25 total columns
+2026-02-10 23:24:57,475 - src.transformation - INFO - Standardizing text fields
+2026-02-10 23:24:57,485 - src.transformation - INFO - Transformation complete: 9900 records
+2026-02-10 23:24:57,489 - src.pipeline - INFO - Transformation complete: 9900 clean records
+2026-02-10 23:24:57,490 - src.pipeline - INFO - Final columns: 25
+2026-02-10 23:24:57,490 - src.pipeline - INFO - 
+2026-02-10 23:24:57,490 - src.pipeline - INFO - STAGE 3/5: Data Validation
+2026-02-10 23:24:57,490 - src.pipeline - INFO - --------------------------------------------------------------------------------
+2026-02-10 23:24:57,491 - src.validation - INFO - Starting data validation
+2026-02-10 23:24:57,491 - src.validation - INFO - Validation check 'completeness' passed
+2026-02-10 23:24:57,492 - src.validation - INFO - Validation check 'uniqueness' passed
+2026-02-10 23:24:57,494 - src.validation - INFO - Validation check 'consistency' passed
+2026-02-10 23:24:57,495 - src.validation - INFO - Validation check 'accuracy' passed
+2026-02-10 23:24:57,495 - src.validation - INFO - Validation complete: PASSED
+2026-02-10 23:24:57,495 - src.pipeline - INFO - All validation checks PASSED
+2026-02-10 23:24:57,520 - src.pipeline - INFO - Data quality metrics:
+2026-02-10 23:24:57,520 - src.pipeline - INFO -   - Memory usage: 5.11 MB
+2026-02-10 23:24:57,521 - src.pipeline - INFO -   - Columns: 26
+2026-02-10 23:24:57,521 - src.pipeline - INFO - 
+2026-02-10 23:24:57,521 - src.pipeline - INFO - STAGE 4/5: Data Aggregation
+2026-02-10 23:24:57,522 - src.pipeline - INFO - --------------------------------------------------------------------------------
+2026-02-10 23:24:57,522 - src.aggregation - INFO - Starting data aggregation
+2026-02-10 23:24:57,522 - src.aggregation - INFO - Creating daily aggregation
+2026-02-10 23:24:57,529 - src.aggregation - INFO - Daily aggregation: 417 days
+2026-02-10 23:24:57,530 - src.aggregation - INFO - Creating product aggregation
+2026-02-10 23:24:57,533 - src.aggregation - INFO - Product aggregation: 196 products
+2026-02-10 23:24:57,534 - src.aggregation - INFO - Creating customer aggregation
+2026-02-10 23:24:57,542 - src.aggregation - INFO - Customer aggregation: 999 customers
+2026-02-10 23:24:57,543 - src.aggregation - INFO - Creating regional aggregation
+2026-02-10 23:24:57,548 - src.aggregation - INFO - Regional aggregation: 4 regions
+2026-02-10 23:24:57,549 - src.aggregation - INFO - Creating hourly aggregation
+2026-02-10 23:24:57,552 - src.aggregation - INFO - Hourly aggregation complete
+2026-02-10 23:24:57,552 - src.aggregation - INFO - Created 5 aggregation views
+2026-02-10 23:24:57,553 - src.pipeline - INFO - Created 5 aggregation views:
+2026-02-10 23:24:57,553 - src.pipeline - INFO -   - daily_summary: 417 records
+2026-02-10 23:24:57,554 - src.pipeline - INFO -   - product_summary: 196 records
+2026-02-10 23:24:57,554 - src.pipeline - INFO -   - customer_summary: 999 records
+2026-02-10 23:24:57,554 - src.pipeline - INFO -   - regional_summary: 4 records
+2026-02-10 23:24:57,555 - src.pipeline - INFO -   - hourly_patterns: 24 records
+2026-02-10 23:24:57,555 - src.pipeline - INFO - 
+2026-02-10 23:24:57,555 - src.pipeline - INFO - STAGE 5/5: Data Output
+2026-02-10 23:24:57,555 - src.pipeline - INFO - --------------------------------------------------------------------------------
+2026-02-10 23:24:57,555 - src.output - INFO - Saving processed data to data\processed\processed_transactions.csv
+2026-02-10 23:24:57,630 - src.output - INFO - Saved 9900 records
+2026-02-10 23:24:57,630 - src.pipeline - INFO - Processed data saved: data\processed\processed_transactions.csv
+2026-02-10 23:24:57,631 - src.output - INFO - Saving daily_summary aggregation
+2026-02-10 23:24:57,634 - src.output - INFO - Saved 417 records to daily_summary_20260210_232457.csv
+2026-02-10 23:24:57,634 - src.output - INFO - Saving product_summary aggregation
+2026-02-10 23:24:57,636 - src.output - INFO - Saved 196 records to product_summary_20260210_232457.csv
+2026-02-10 23:24:57,636 - src.output - INFO - Saving customer_summary aggregation
+2026-02-10 23:24:57,641 - src.output - INFO - Saved 999 records to customer_summary_20260210_232457.csv
+2026-02-10 23:24:57,641 - src.output - INFO - Saving regional_summary aggregation
+2026-02-10 23:24:57,643 - src.output - INFO - Saved 4 records to regional_summary_20260210_232457.csv
+2026-02-10 23:24:57,643 - src.output - INFO - Saving hourly_patterns aggregation
+2026-02-10 23:24:57,645 - src.output - INFO - Saved 24 records to hourly_patterns_20260210_232457.csv
+2026-02-10 23:24:57,645 - src.pipeline - INFO - Saved 5 aggregation files
+2026-02-10 23:24:57,645 - src.output - INFO - Saving validation report to data\processed\validation_report_20260210_232457.json
+2026-02-10 23:24:57,646 - src.output - INFO - Validation report saved
+2026-02-10 23:24:57,646 - src.pipeline - INFO - Validation report saved: data\processed\validation_report_20260210_232457.json
+2026-02-10 23:24:57,647 - src.output - INFO - Generating summary statistics
+2026-02-10 23:24:57,663 - src.output - INFO - Summary statistics saved to data\processed\summary_stats_20260210_232457.csv
+2026-02-10 23:24:57,664 - src.pipeline - INFO - Summary statistics saved: data\processed\summary_stats_20260210_232457.csv
+2026-02-10 23:24:57,664 - src.output - INFO - Saving Excel report to data\processed\analytics_report_20260210_232457.xlsx
+2026-02-10 23:24:58,024 - src.output - INFO - Added sheet: Processed_Data
+2026-02-10 23:24:58,037 - src.output - INFO - Added sheet: Daily_Summary
+2026-02-10 23:24:58,044 - src.output - INFO - Added sheet: Product_Summary
+2026-02-10 23:24:58,046 - src.output - INFO - Added sheet: Regional_Summary
+2026-02-10 23:24:58,447 - src.output - INFO - Excel report saved
+2026-02-10 23:24:58,448 - src.pipeline - INFO - Excel report saved: data\processed\analytics_report_20260210_232457.xlsx
+2026-02-10 23:24:58,448 - src.pipeline - INFO - 
+2026-02-10 23:24:58,448 - src.pipeline - INFO - ================================================================================
+2026-02-10 23:24:58,448 - src.pipeline - INFO - PIPELINE SUMMARY
+2026-02-10 23:24:58,448 - src.pipeline - INFO - ================================================================================
+2026-02-10 23:24:58,448 - src.pipeline - INFO - Status: SUCCESS
+2026-02-10 23:24:58,449 - src.pipeline - INFO - Execution time: 1.02 seconds
+2026-02-10 23:24:58,449 - src.pipeline - INFO - 
+2026-02-10 23:24:58,449 - src.pipeline - INFO - Data Flow:
+2026-02-10 23:24:58,449 - src.pipeline - INFO -   Raw records:         10,000
+2026-02-10 23:24:58,450 - src.pipeline - INFO -   Transformed records: 9,900
+2026-02-10 23:24:58,450 - src.pipeline - INFO -   Data quality:        PASSED
+2026-02-10 23:24:58,450 - src.pipeline - INFO - 
+2026-02-10 23:24:58,450 - src.pipeline - INFO - Outputs Generated:
+2026-02-10 23:24:58,450 - src.pipeline - INFO -   - Processed data:    processed_transactions.csv
+2026-02-10 23:24:58,450 - src.pipeline - INFO -   - Aggregations:      5 files
+2026-02-10 23:24:58,450 - src.pipeline - INFO -   - Validation report: validation_report_20260210_232457.json
+2026-02-10 23:24:58,451 - src.pipeline - INFO -   - Excel report:      analytics_report_20260210_232457.xlsx
+2026-02-10 23:24:58,451 - src.pipeline - INFO -   - Summary stats:     summary_stats_20260210_232457.csv
+2026-02-10 23:24:58,451 - src.pipeline - INFO - ================================================================================
